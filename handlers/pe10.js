@@ -2,7 +2,7 @@ const Telegram = require('telegram-node-bot')
 const TelegramBaseController = Telegram.TelegramBaseController;
 var BotUtils = require("../utils.js")
 
-class PEController extends TelegramBaseController {
+class PETENController extends TelegramBaseController {
 
     triggerCommand($) {
         BotUtils.getRomFilter($, this.searchBuild)
@@ -10,20 +10,12 @@ class PEController extends TelegramBaseController {
 
     searchBuild($) {
 
-        if ($.message.text && ($.message.text.startsWith("/peplus"))) {
-            return
-        }
-
-        if ($.message.text && ($.message.text.startsWith("/pe10"))) {
-            return
-        }
-
         var kb = {
             inline_keyboard: []
         };
 
         if (!$.command.success || $.command.arguments.length === 0) {
-            $.sendMessage("Usage: /pe device", {
+            $.sendMessage("Usage: /pe10 device", {
                 parse_mode: "markdown",
                 reply_to_message_id: $.message.messageId
             });
@@ -32,14 +24,14 @@ class PEController extends TelegramBaseController {
 
         var keywords = $.command.arguments[0]
 
-        BotUtils.getJSON("https://download.pixelexperience.org/ota_v3/" + keywords + "/pie",
+        BotUtils.getJSON("https://download.pixelexperience.org/ota_v3/" + keywords + "/ten",
             function (json, err) {
 
                 if (err)
                     return
 
                 if (json.filename !== "" && json.url !== "") {
-                    var msg = "🔍 *PixelExperience build for " + keywords + "* \n";
+                    var msg = "🔍 *PixelExperience 10.0 (Beta) build for " + keywords + "* \n";
                     msg += "*Build date*: " + BotUtils.humanDateTime(json.datetime) + "\n"
                     msg += "*File Size*: " + BotUtils.humanFileSize(json.size, true) + "\n"
 
@@ -67,11 +59,11 @@ class PEController extends TelegramBaseController {
 
     get routes() {
         return {
-            'peBuildHandler': 'triggerCommand',
+            'petenBuildHandler': 'triggerCommand',
         }
     }
 }
 
 
 
-module.exports = PEController;
+module.exports = PETENController;

@@ -186,6 +186,11 @@ tg.router
     )
 
     .when(
+        new TextCommand('/pe10', 'petenBuildHandler', ''),
+        new exports["pe10"]()
+    )
+
+    .when(
         new TextCommand('/pixys', 'pixysBuildHandler', ''),
         new exports["pixy"]()
     )
