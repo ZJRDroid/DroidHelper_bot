@@ -34,6 +34,7 @@ class PETENController extends TelegramBaseController {
                     var msg = "🔍 *PixelExperience 10.0 (Beta) build for " + keywords + "* \n";
                     msg += "*Build date*: " + BotUtils.humanDateTime(json.datetime) + "\n"
                     msg += "*File Size*: " + BotUtils.humanFileSize(json.size, true) + "\n"
+                    msg += "*Maintainer*: " + json.maintainer + "\n"
 
                     kb.inline_keyboard.push(
                                 [{

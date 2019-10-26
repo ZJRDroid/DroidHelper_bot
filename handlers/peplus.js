@@ -34,6 +34,7 @@ class PEPLUSController extends TelegramBaseController {
                     var msg = "🔍 *PixelExperience Plus build for " + keywords + "* \n";
                     msg += "*Build date*: " + BotUtils.humanDateTime(json.datetime) + "\n"
                     msg += "*File Size*: " + BotUtils.humanFileSize(json.size, true) + "\n"
+                    msg += "*Maintainer*: " + json.maintainer + "\n"
 
                     kb.inline_keyboard.push(
                                 [{
